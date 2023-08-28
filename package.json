@@ -1,0 +1,23 @@
+{
+  "name": "gympass-style-api",
+  "version": "1.0.0",
+  "description": "GymPass style app.",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsup src --out-dir build",
+    "start:build": "node build/server.js",
+    "start:dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "20.5.7",
+    "tsup": "7.2.0",
+    "tsx": "3.12.7",
+    "typescript": "5.2.2"
+  },
+  "dependencies": {
+    "fastify": "4.22.0"
+  }
+}

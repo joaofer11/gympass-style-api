@@ -27,5 +27,7 @@ export const registerUserController = async (
     if (err instanceof EmailIsAlreadyInUseError) {
       return response.status(409).send({ message: err.message });
     }
+
+    throw err;
   }
 };

@@ -5,6 +5,8 @@ import { ResourceNotFoundError } from './errors/resource-not-found-error';
 import { InMemoryGymRepository } from '@/repositories/in-memory/in-memory-gym-repository';
 import { InMemoryUserRepository } from '@/repositories/in-memory/in-memory-user-repository';
 import { InMemoryCheckInRepository } from '@/repositories/in-memory/in-memory-check-in-repository';
+import { ReachedMaxCheckInPerDay } from './errors/max-check-in-per-day-reached-error';
+import { ReachedMaxDistanceFromUserToGym } from './errors/reached-max-distance-from-user-to-gym';
 
 describe('Get User Profile Service', () => {
   let userRepository: InMemoryUserRepository;
@@ -112,7 +114,7 @@ describe('Get User Profile Service', () => {
         userLatitude: -6.2640892,
         userLongitude: -38.3113134,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(ReachedMaxCheckInPerDay);
   });
 
   it('should be able to check in user twice but in different days', async () => {
@@ -171,6 +173,6 @@ describe('Get User Profile Service', () => {
         userLatitude: -6.2640892,
         userLongitude: -38.3113134,
       })
-    ).rejects.toBeInstanceOf(Error);
+    ).rejects.toBeInstanceOf(ReachedMaxDistanceFromUserToGym);
   });
 });

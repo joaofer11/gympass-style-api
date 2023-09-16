@@ -5,6 +5,12 @@ import { ICheckInRepository } from '../ICheckInRepository';
 export class InMemoryCheckInRepository implements ICheckInRepository {
   items: CheckIn[] = [];
 
+  async findManyByUserId(userId: string, page: number) {
+    return this.items
+      .filter((item) => item.userId === userId)
+      .slice((page - 1) * 20, page * 20);
+  }
+
   async findByUserIdOnDate(userId: string, date: Date) {
     const twentyThreeHours = 1000 * 60 * 60 * 23;
     const fiftyNineMinutes = 1000 * 60 * 59;

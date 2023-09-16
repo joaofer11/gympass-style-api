@@ -3,7 +3,9 @@ import { IGymRepository } from '@/repositories/IGymRepository';
 import { IUserRepository } from '@/repositories/IUserRepository';
 import { ICheckInRepository } from '@/repositories/ICheckInRepository';
 import { ResourceNotFoundError } from './errors/resource-not-found-error';
+import { ReachedMaxCheckInPerDay } from './errors/max-check-in-per-day-reached-error';
 import { getDistanceBetweenCoordinates } from '@/utils/get-distance-between-coodinates';
+import { ReachedMaxDistanceFromUserToGym } from './errors/reached-max-distance-from-user-to-gym';
 
 interface ICheckInUserServiceInput {
   userId: string;
@@ -53,7 +55,7 @@ export class CheckInUserService {
       await this.#checkInRepository.findByUserIdOnDate(userId, new Date());
 
     if (checkInOnTheSameDate) {
-      throw new Error();
+      throw new ReachedMaxCheckInPerDay();
     }
 
     const distance = getDistanceBetweenCoordinates(
@@ -64,7 +66,7 @@ export class CheckInUserService {
     const HUNDRED_METERS = 0.1; // 1 = 1000m = 1km;
 
     if (distance > HUNDRED_METERS) {
-      throw new Error();
+      throw new ReachedMaxDistanceFromUserToGym();
     }
 
     const checkIn = await this.#checkInRepository.create({

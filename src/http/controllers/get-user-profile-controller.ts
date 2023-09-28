@@ -14,7 +14,9 @@ export const getUserProfileController = async (
   });
 
   return response.status(200).send({
-    ...user,
-    passwordHash: undefined,
+    user: {
+      ...user,
+      passwordHash: undefined,
+    },
   });
 };

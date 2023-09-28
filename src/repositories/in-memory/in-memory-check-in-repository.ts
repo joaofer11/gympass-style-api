@@ -23,8 +23,6 @@ export class InMemoryCheckInRepository implements ICheckInRepository {
       fiftyNineSeconds +
       nineHundredNinetyNineMilliseconds;
 
-    console.log({ oneDay });
-
     return (
       this.items.find(
         (item) =>

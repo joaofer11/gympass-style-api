@@ -12,7 +12,8 @@
     "test": "vitest run --dir src/services",
     "test:watch": "vitest --dir src/services",
     "pretest:e2e": "run-s test:create-prisma-environment test:install-prisma-environment",
-    "test:e2e": "vitest run --dir src/http/controllers"
+    "test:e2e": "vitest run --dir src/http/controllers",
+    "test:e2e:watch": "vitest --dir src/http/controllers"
   },
   "keywords": [],
   "author": "",
@@ -20,11 +21,13 @@
   "devDependencies": {
     "@types/bcryptjs": "2.4.3",
     "@types/node": "20.5.7",
+    "@types/supertest": "2.0.13",
     "@typescript-eslint/eslint-plugin": "6.5.0",
     "@typescript-eslint/parser": "6.5.0",
     "eslint": "8.48.0",
     "npm-run-all": "4.1.5",
     "prisma": "5.2.0",
+    "supertest": "6.3.3",
     "tsup": "7.2.0",
     "tsx": "3.12.7",
     "typescript": "5.2.2",
